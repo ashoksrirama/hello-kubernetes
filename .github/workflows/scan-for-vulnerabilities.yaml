@@ -9,15 +9,9 @@ on:
 
 jobs:
 
-  login:
-    runs-on: ubuntu-latest
-    steps:
-      -
-        name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+  # login:
+  #   runs-on: ubuntu-latest
+  #   steps:
 
   scan-and-report-vulnerabilities:
     
@@ -56,6 +50,12 @@ jobs:
         uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: trivy-results.sarif
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Push image and tags to registry
         run: |
