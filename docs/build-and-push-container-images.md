@@ -34,11 +34,11 @@ The `Makefile` in the root folder of the repo provides the functionality to allo
 You can build the `hello-kubernete` container image as follows:
 
 ```bash
-# Build the paulbouwer/hello-kubernetes:$version image
+# Build the sriram430/hello-kubernetes:$version image
 make build-image-linux
 
-# Build the paulbouwer.azurecr.io/paulbouwer/hello-kubernetes:$version image
-export REGISTRY=paulbouwer.azurecr.io
+# Build the paulbouwer.azurecr.io/sriram430/hello-kubernetes:$version image
+export REGISTRY=sriram430.azurecr.io
 make build-image-linux
 ```
 
@@ -47,23 +47,23 @@ make build-image-linux
 You can push your built `hello-kubernetes` container image to the defined registry as follows:
 
 ```bash
-# Push paulbouwer/hello-kubernetes:$version to docker hub.
+# Push sriram430/hello-kubernetes:$version to docker hub.
 # Will tag $majorversion and $majorversion.$minorversion.
 #
 # Example: The container image will be tagged as follows for $version=1.10.0
-#   - paulbouwer/hello-kubernetes:1.10.0
-#   - paulbouwer/hello-kubernetes:1.10
-#   - paulbouwer/hello-kubernetes:1
+#   - sriram430/hello-kubernetes:1.10.0
+#   - sriram430/hello-kubernetes:1.10
+#   - sriram430/hello-kubernetes:1
 make push-image
 
-# REGISTRY=paulbouwer.azurecr.io
-# Push paulbouwer.azurecr.io/paulbouwer/hello-kubernetes:$version to paulbouwer.azurecr.io.
+# REGISTRY=sriram430.azurecr.io
+# Push sriram430.azurecr.io/sriram430/hello-kubernetes:$version to sriram430.azurecr.io.
 # Will tag $majorversion and $majorversion.$minorversion.
 #
 # Example: The container image will be tagged as follows for $version=1.10.0
-#   - paulbouwer.azurecr.io/paulbouwer/hello-kubernetes:1.10.0
-#   - paulbouwer.azurecr.io/paulbouwer/hello-kubernetes:1.10
-#   - paulbouwer.azurecr.io/paulbouwer/hello-kubernetes:1
-export REGISTRY=paulbouwer.azurecr.io
+#   - sriram430.azurecr.io/sriram430/hello-kubernetes:1.10.0
+#   - sriram430.azurecr.io/sriram430/hello-kubernetes:1.10
+#   - sriram430.azurecr.io/sriram430/hello-kubernetes:1
+export REGISTRY=sriram430.azurecr.io
 make push-image
 ```
