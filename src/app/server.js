@@ -28,6 +28,7 @@ var handlerPathPrefix = (
     ''
 );
 
+var podIp = process.env.KUBERNETES_POD_IP || Object.values(require("os").networkInterfaces()).flat().filter((item) => !item.internal && item.family === "IPv4").find(Boolean).address;
 var namespace = process.env.KUBERNETES_NAMESPACE || '-';
 var podName = process.env.KUBERNETES_POD_NAME || os.hostname();
 var nodeName = process.env.KUBERNETES_NODE_NAME || '-';
@@ -65,6 +66,7 @@ app.get(handlerPathPrefix + '/', function (req, res) {
       message: message,
       namespace: namespace,
       pod: podName,
+      podIp: podIp,
       node: nodeName + ' (' + nodeOS + ')',
       container: containerImage + ' (' + containerImageArch + ')',
       renderPathPrefix: renderPathPrefix
