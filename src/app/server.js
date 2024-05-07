@@ -32,6 +32,8 @@ var podIp = process.env.KUBERNETES_POD_IP || Object.values(require("os").network
 var namespace = process.env.KUBERNETES_NAMESPACE || '-';
 var podName = process.env.KUBERNETES_POD_NAME || os.hostname();
 var nodeName = process.env.KUBERNETES_NODE_NAME || '-';
+var clusterName = process.env.KUBERNETES_CLUSTER_NAME || '-';
+var regionName = process.env.REGION_NAME || '-';
 var nodeOS = os.type() + ' ' + os.release();
 var applicationVersion = JSON.parse(fs.readFileSync('package.json', 'utf8')).version;
 var containerImage = process.env.CONTAINER_IMAGE || 'sriram430/hello-kubernetes:' + applicationVersion
@@ -48,6 +50,8 @@ logger.debug('KUBERNETES_NAMESPACE=' + process.env.KUBERNETES_NAMESPACE);
 logger.debug('KUBERNETES_POD_NAME=' + process.env.KUBERNETES_POD_NAME);
 logger.debug('KUBERNETES_NODE_NAME=' + process.env.KUBERNETES_NODE_NAME);
 logger.debug('CONTAINER_IMAGE=' + process.env.CONTAINER_IMAGE);
+logger.debug('KUBERNETES_CLUSTER_NAME=' + process.env.KUBERNETES_CLUSTER_NAME);
+logger.debug('REGION_NAME=' + process.env.REGION_NAME);
 
 // Handlers
 
@@ -68,6 +72,8 @@ app.get(handlerPathPrefix + '/', function (req, res) {
       pod: podName,
       podIp: podIp,
       node: nodeName + ' (' + nodeOS + ')',
+      cluster: clusterName,
+      region: regionName,
       container: containerImage + ' (' + containerImageArch + ')',
       renderPathPrefix: renderPathPrefix
     });
